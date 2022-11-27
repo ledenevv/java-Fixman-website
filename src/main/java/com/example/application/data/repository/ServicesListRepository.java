@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ServicesListRepository extends JpaRepository<ServicesList, Long> {
-   @Query(value = "SELECT s FROM service_list")
-    List<ServicesList> getAllDataFromServices();
+
+    @Query("select s from ServicesList s " +
+            "where lower(s.serviceName) like lower(concat('%', :searchTerm, '%')) " +
+            "or lower(s.serviceDescr) like lower(concat('%', :searchTerm, '%')) " +
+            "or lower(s.price) like lower(concat('%', :searchTerm, '%'))")
+    List<ServicesList> search(@Param("searchTerm") String searchTerm);
 }
