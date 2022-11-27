@@ -1,7 +1,11 @@
 package com.example.application;
 
+import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.NpmPackage;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import org.springframework.boot.SpringApplication;
@@ -25,3 +29,4 @@ public class Application implements AppShellConfigurator {
     }
 
 }
+
