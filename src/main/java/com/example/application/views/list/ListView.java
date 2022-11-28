@@ -47,6 +47,13 @@ public class ListView extends VerticalLayout {
         );
 
         updateList();
+        closeEditor();
+    }
+
+    private void closeEditor() {
+        form.setService(null);
+        form.setVisible(false);
+        removeClassName("editing");
     }
 
     private void updateList() {
@@ -66,6 +73,24 @@ public class ListView extends VerticalLayout {
     private void configureForm() {
         form = new ServiceForm();
         form.setWidth("25em");
+
+        form.addListener(ServiceForm.SaveEvent.class, this::saveService);
+        form.addListener(ServiceForm.DeleteEvent.class, this::deleteService);
+        form.addListener(ServiceForm.CancelEvent.class, e-> closeEditor());
+    }
+
+
+    private void saveService(ServiceForm.SaveEvent event) {
+        service.saveService(event.getService());
+        updateList();
+        closeEditor();
+
+    }
+
+    private void deleteService(ServiceForm.DeleteEvent event) {
+        service.deleteService(event.getService());
+        updateList();
+        closeEditor();
     }
 
 
@@ -76,6 +101,7 @@ public class ListView extends VerticalLayout {
         filterText.addValueChangeListener(e -> updateList());
 
         Button addServiceButton = new Button("Add Service");
+        addServiceButton.addClickListener(e -> addService());
 
         HorizontalLayout toolbar = new HorizontalLayout(filterText, addServiceButton);
         toolbar.addClassName("toolbar");
@@ -83,11 +109,29 @@ public class ListView extends VerticalLayout {
 
     }
 
+    private void addService() {
+        grid.asSingleSelect().clear();
+        editService(new ServicesList());
+    }
+
     private void configureGrid() {
         addClassName("services-grid");
         grid.setSizeFull();
         grid.setColumns("serviceName", "serviceDescr", "price");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
+
+        grid.asSingleSelect().addValueChangeListener(e -> editService(e.getValue()));
+
+    }
+
+    private void editService(ServicesList service) {
+        if(service == null) {
+            closeEditor();
+        } else {
+            form.setService(service);
+            form.setVisible(true);
+            addClassName("editing");
+        }
 
     }
 
