@@ -10,21 +10,18 @@ import java.util.List;
 public class CrmService {
     private final OrderRepository orderRepository;
     private final PersonalRepository personalRepository;
-    private final RoleRepository roleRepository;
     private final ServicesListRepository servicesListRepository;
     private final StatusesRepository statusesRepository;
     private final UserRepository userRepository;
 
     public CrmService(OrderRepository orderRepository,
                       PersonalRepository personalRepository,
-                      RoleRepository roleRepository,
                       ServicesListRepository servicesListRepository,
                       StatusesRepository statusesRepository,
                       UserRepository userRepository) {
 
         this.orderRepository = orderRepository;
         this.personalRepository = personalRepository;
-        this.roleRepository = roleRepository;
         this.servicesListRepository = servicesListRepository;
         this.statusesRepository = statusesRepository;
         this.userRepository = userRepository;

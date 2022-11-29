@@ -26,7 +26,7 @@ import javax.annotation.security.PermitAll;
 import java.util.Collections;
 
 @PageTitle(" Services | FixMan")
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "services", layout = MainLayout.class)
 @PermitAll
 public class ListView extends VerticalLayout {
 

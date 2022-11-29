@@ -16,12 +16,12 @@ public class Personal {
 
     @Size(max = 45)
     @NotNull
-    @Column(name = "firstName", nullable = false, length = 45)
+    @Column(name = "first_name", nullable = false, length = 45)
     private String firstName;
 
     @Size(max = 45)
     @NotNull
-    @Column(name = "lastName", nullable = false, length = 45)
+    @Column(name = "last_name", nullable = false, length = 45)
     private String lastName;
 
     @Size(max = 45)

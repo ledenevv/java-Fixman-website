@@ -16,7 +16,7 @@ public class Statuses {
 
     @Size(max = 45)
     @NotNull
-    @Column(name = "status_type", nullable = false, length = 45)
+    @Column(name = "status_type ", nullable = false, length = 45)
     private String statusType;
 
     @OneToMany(mappedBy = "status")

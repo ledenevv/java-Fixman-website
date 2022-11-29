@@ -29,8 +29,8 @@ public class SecurityConfig extends VaadinWebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/images/**");
         super.configure(web);
     }
-
-    /*@Bean
+/*
+    @Bean
     @Override
     protected UserDetailsService userDetailsService() {
         return new InMemoryUserDetailsManager(User.withUsername("user")
@@ -38,15 +38,18 @@ public class SecurityConfig extends VaadinWebSecurityConfigurerAdapter {
         .roles("USER")
         .build());
     }
+}
+ */
 
-     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select login, password from users where login=?")
-                .authoritiesByUsernameQuery("select u.login, r.role_type from users u inner join roles r on r.id_role = u.role_id where u.login=? "); //springboot get users list with their roles
+                .usersByUsernameQuery("select login, password, active from users where login=?")
+                .authoritiesByUsernameQuery("select u.login, ur.roles from users u inner join user_role ur on u.id_user = ur.user_id where u.login=? ");//springboot get users list with their roles
+
+
     }
 
 }
