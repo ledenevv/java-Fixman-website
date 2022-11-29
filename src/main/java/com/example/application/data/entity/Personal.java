@@ -26,8 +26,8 @@ public class Personal {
 
     @Size(max = 45)
     @NotNull
-    @Column(name = "sex", nullable = false, length = 45)
-    private String sex;
+    @Column(name = "gender", nullable = false, length = 45)
+    private String gender;
 
     @Size(max = 45)
     @NotNull
@@ -66,12 +66,12 @@ public class Personal {
         this.lastName = lastName;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getAddress() {

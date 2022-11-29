@@ -17,7 +17,7 @@ public class Order {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "service_id", nullable = false)
     private ServicesList service;
 
@@ -29,7 +29,7 @@ public class Order {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "status_id", nullable = false)
     private com.example.application.data.entity.Statuses status;
 
